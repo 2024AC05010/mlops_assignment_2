@@ -79,9 +79,9 @@ data/
 - Normalization (ImageNet statistics)
 
 **Data Split:**
-- Training: 80% (20,000 images)
-- Validation: 10% (2,500 images)
-- Test: 10% (2,500 images)
+- Training: 80% (10,000 images)
+- Validation: 10% (1000 images)
+- Test: 10% (1000 images)
 
 ---
 
@@ -253,17 +253,6 @@ LOSS_FUNCTION = "BCEWithLogitsLoss"
 - Track validation loss and accuracy
 - Early stopping potential (not implemented)
 
-### Training Results
-
-Typical training progression:
-- **Epoch 1**: Train Acc: ~0.65, Val Acc: ~0.62
-- **Epoch 5**: Train Acc: ~0.82, Val Acc: ~0.80
-- **Epoch 10**: Train Acc: ~0.89, Val Acc: ~0.86
-
-**Final Performance:**
-- Training Accuracy: ~89%
-- Validation Accuracy: ~86%
-- Test Accuracy: ~85%
 
 ---
 
@@ -326,18 +315,6 @@ run_name = f"cnn_v1_{datetime.datetime.now().strftime('%Y%m%d_%H%M%S')}"
 - ROC-AUC (threshold-independent performance)
 - Inference latency (for API performance)
 
-### Test Results
-
-```json
-{
-    "train_accuracy": 0.8923,
-    "val_accuracy": 0.8612,
-    "test_accuracy": 0.8545,
-    "train_loss": 0.2876,
-    "val_loss": 0.3521,
-    "test_loss": 0.3812
-}
-```
 
 ### Model Registry Management
 
