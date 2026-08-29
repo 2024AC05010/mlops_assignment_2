@@ -1,0 +1,11 @@
+data/raw/
+data/processed/
+mlruns/
+models/*.pt
+__pycache__/
+*.pyc
+.env
+venv/
+app.log
+artifacts/
+*.pkl

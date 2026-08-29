@@ -1,0 +1,70 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+venv/
+ENV/
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# Data directories (exclude raw data, keep only sample)
+data/raw/
+data/processed/
+
+# MLflow and artifacts
+mlruns/
+artifacts/
+*.pkl
+*.png
+
+# Documentation
+*.md
+docs/
+
+# Git
+.git/
+.gitignore
+.github/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# DVC
+.dvc/
+.dvcignore
+
+# Testing
+.pytest_cache/
+.coverage
+htmlcov/
+
+# Logs
+*.log
+app.log
+
+# Temporary files
+*.tmp
+temp/

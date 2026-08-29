@@ -1,0 +1,10 @@
+{
+  "train_accuracy": 0.7611,
+  "val_accuracy": 0.775,
+  "test_accuracy": 0.773,
+  "train_loss": 0.4863,
+  "val_loss": 0.4627,
+  "test_loss": 0.484,
+  "epochs": 10,
+  "mlflow_run_id": "ace47d063b9a4f37a51c3f7bdb92e8f5"
+}

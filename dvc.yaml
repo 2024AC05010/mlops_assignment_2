@@ -1,0 +1,28 @@
+stages:
+  preprocess:
+    cmd: python src/data_preprocessing.py
+    deps:
+      - src/data_preprocessing.py
+      - data/raw
+    outs:
+      - data/processed
+  train:
+    cmd: python src/train.py
+    deps:
+      - src/train.py
+      - src/model.py
+      - data/processed
+    outs:
+      - models/cat_dog_model.pt
+    metrics:
+      - metrics.json:
+          cache: false
+  evaluate:
+    cmd: python src/evaluate.py
+    deps:
+      - src/evaluate.py
+      - models/cat_dog_model.pt
+      - data/processed
+    outs:
+      - artifacts/confusion_matrix.png
+      - artifacts/loss_curves.png

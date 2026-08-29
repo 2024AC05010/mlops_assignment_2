@@ -1,0 +1,57 @@
+version: '3.8'
+
+services:
+  cats-dogs-api:
+    image: ${DOCKER_USERNAME:-myuser}/cats-dogs-classifier:latest
+    container_name: cats-dogs-classifier
+    ports:
+      - "8000:8000"
+    environment:
+      - MODEL_PATH=/app/models/cat_dog_model.pt
+      - LOG_LEVEL=INFO
+      - DEPLOYMENT_VERSION=${IMAGE_TAG:-latest}
+    volumes:
+      - app-logs:/app/logs
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8000/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 15s
+    labels:
+      - "com.catsdogs.version=${IMAGE_TAG:-latest}"
+
+  prometheus:
+    image: prom/prometheus:latest
+    container_name: prometheus
+    ports:
+      - "9090:9090"
+    volumes:
+      - ./prometheus.yml:/etc/prometheus/prometheus.yml
+      - prometheus-data:/prometheus
+    depends_on:
+      - cats-dogs-api
+    restart: unless-stopped
+
+  grafana:
+    image: grafana/grafana:latest
+    container_name: grafana
+    ports:
+      - "3000:3000"
+    environment:
+      - GF_SECURITY_ADMIN_USER=admin
+      - GF_SECURITY_ADMIN_PASSWORD=admin
+      - GF_USERS_ALLOW_SIGN_UP=false
+    volumes:
+      - grafana-data:/var/lib/grafana
+      - ./grafana/provisioning:/etc/grafana/provisioning
+      - ./grafana/dashboards:/var/lib/grafana/dashboards
+    depends_on:
+      - prometheus
+    restart: unless-stopped
+
+volumes:
+  app-logs:
+  prometheus-data:
+  grafana-data:
